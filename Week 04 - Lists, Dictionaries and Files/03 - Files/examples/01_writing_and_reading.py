@@ -9,7 +9,7 @@ Run:  python 01_writing_and_reading.py
 # with...as automatically closes the file for you, even if something goes
 # wrong partway through. Always use it.
 
-with open("output.txt") as f:
+with open("output.txt", "w") as f:
     f.write("R-001\n")
     f.write("R-002\n")
     f.write("R-003\n")
