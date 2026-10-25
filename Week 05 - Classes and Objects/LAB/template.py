@@ -2,9 +2,9 @@
 RECORD CHECK  -  my version
 ===========================
 
-Name  :
-Lane  :  AI / Cyber / IT      (delete two)
-Date  :
+Name  : Bryan 
+Lane  :  AI   (delete two)
+Date  : 25/10/2026
 
 Run it:   python template.py
 
@@ -24,6 +24,24 @@ Delete these instructions as you replace them with your code.
 #                see the note below.
 
 # your class goes here
+class Record:
+    over_limit_count=0
+    def __init__(self,label,value,limit): 
+        """we use this to initliaze our function and we use self for each object individually"""
+        self.label=label
+        self.value=value
+        self.limit=limit
+        if self.value >= self.limit:
+            Record.over_limit_count += 1
+    def status(self):
+            p = (self.value/self.limit) *100
+            if p>100:
+                        return "OVERLIMIT"
+            elif p<100 and p>=90:
+                        return "warning"
+            else:
+                        return "ok"
+    """in this function we use value and limit to find whether it is overlimit or not"""
 
 
 # ==================================================================== RECORDS
@@ -34,9 +52,18 @@ Delete these instructions as you replace them with your code.
 #    Excellent : instead, write load_records(path) that reads label,value,limit
 #                lines from a file and returns a list of Record objects. Make
 #                your own data file, one record per line.
+  # replace with your code
+def load_records(path):
+        """this method is used to load the text from the file and return a list of records"""
+        records=[]
 
-records = []   # replace with your code
+        with open(path) as f:   
+            for line in f:
+                label,value,limit=line.strip().split(",")
+                records.append(Record(label,float(value),float(limit)))
 
+        return records
+records=load_records("records_sample.txt")
 
 # ==================================================================== OUTPUT
 # 3. Print a report for each record.
@@ -56,9 +83,13 @@ for record in records:
     print("=" * 34)
 
     # your report lines go here
+    print(f"Value  : {record.value}")
+    print(f"Limit  : {record.limit}")
+    print(f"Status : {record.status()}")
+
 
     print("=" * 34)
-
+    print(f"\noverlimit counter: {Record.over_limit_count}")
 
 # ==========================================================================
 # 4. Before you finish:
