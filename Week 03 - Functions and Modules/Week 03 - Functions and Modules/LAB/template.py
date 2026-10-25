@@ -27,7 +27,32 @@ Delete these instructions as you replace them with your code.
 #    Give each function a one-line docstring saying what it does.
 
 # your function(s) go here
+def status_of(percent):  
+    """this tells us of the status of the percent"""
+    if percent>100:
+        return "over limit"
+    elif percent<100 and percent>90:
+        return "wanring"
+    else:
+        return " ok"
 
+def check(value,limit):
+    """this does the difference and percentage calculation"""
+    difference=value-limit
+    percentage=(value/limit)*100
+    return difference,percentage
+
+def print_report(label,value,limit,difference,percent,status):
+    """this helps us to organize all the print commands under one function """
+    print("=" * 34)
+    print(f"  RECORD CHECK  -  {label}")
+    print("=" * 34)
+    print(f"Value: {value}")
+    print(f"Limit: {limit}")
+    print(f"Difference: {difference:.2f}")
+    print(f"Percent: {percent:.2f}%")
+    print(f"Status: {status}")
+    print("=" * 34)
 
 # ==================================================================== INPUT
 # 2. Ask for your three values.
@@ -36,9 +61,9 @@ Delete these instructions as you replace them with your code.
 #    - the second is a NUMBER (use float(), not int())
 #    - the third  is a NUMBER (use float(), not int())
 
-label = ""      # replace with an input() call
-value = 0.0     # replace with an input() call, converted
-limit = 0.0     # replace with an input() call, converted
+#label = input("whats ur name")    # replace with an input() call
+#value = int(input("whats ur name"))   # replace with an input() call, converted
+#limit = int(input("whats the limit?"))     # replace with an input() call, converted
 
 
 # ================================================================== PROCESS
@@ -48,9 +73,9 @@ limit = 0.0     # replace with an input() call, converted
 #                difference and percentage inline, not in a function.
 #    Typical   : call check() to get the difference and percentage instead.
 
-difference = 0.0   # replace with your code
-percent = 0.0       # replace with your code
-status = ""          # replace with your code
+  # replace with your code
+       # replace with your code
+         # replace with your code
 
 
 # =================================================================== OUTPUT
@@ -63,15 +88,24 @@ status = ""          # replace with your code
 #                as you like in one run - type "quit" as the label to stop.
 #                Keep count of how many came back OVER LIMIT and print that
 #                once, after the loop ends.
+overlimit_counter=0
+while True:
+    label=input("whats ur name(type quit to stop)")
+    value=float(input("enter value"))
+    limit=float(input("enter limit"))
+    difference , percent =check(value,limit)
+    status=status_of(percent)
+    if label=="quit":
+            break
+    overlimit_counter =+ 1
 
-print()
-print("=" * 34)
-print(f"  RECORD CHECK  -  {label}")
-print("=" * 34)
+print_report(label,value,limit,difference,percent,status)
+print(f"total records over limit: {overlimit_counter}")
+
 
 # your report lines go here
 
-print("=" * 34)
+
 
 
 # ==========================================================================
